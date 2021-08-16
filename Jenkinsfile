@@ -7,7 +7,7 @@ node("docker && linux") {
   deleteDir()
   
   pacmanWithGitCredentials.httpGitCredentials("github-app-boz") {
-        
+        checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-app-boz11', url: 'https://github.com/bozangnj/githubapp.git']]])
         sh "ls"
         sh "git status" 
         sh "git checkout master"
