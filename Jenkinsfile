@@ -5,9 +5,8 @@ import groovy.json.JsonOutput
 import groovy.json.JsonSlurperClassic
 node("docker && linux") {
   deleteDir()
-  
+  checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-app-boz', url: 'https://github.com/bozangnj/githubapp.git']]])
   pacmanWithGitCredentials.httpGitCredentials("github-app-boz") {
-        checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github-app-boz', url: 'https://github.com/bozangnj/githubapp.git']]])
         sh "ls"
         sh "git status" 
         sh "git checkout master"
